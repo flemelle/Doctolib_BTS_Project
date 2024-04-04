@@ -1,0 +1,18 @@
+Options to add
+ - appointement taking (dataAdd) V
+ - account page (DataExtract) V
+ - homePage (Front) V
+
+To implement
+ - account update (DataUpdate) V
+ - inscription
+ - Appointement (patient) V
+ - Prescription (Doctor) V
+
+DB addition
+ - table appointment V
+ - table prescription V
+
+Details
+ - hover on <tr>
+ - Hide patient and Medecin regarding of the role V
