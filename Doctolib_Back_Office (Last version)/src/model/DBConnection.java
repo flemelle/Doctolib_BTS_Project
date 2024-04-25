@@ -27,8 +27,8 @@ public class DBConnection {
 		}
 		catch (SQLException exp) {
 			System.out.println("Erreur de connexion a : " + url);
+			System.out.println(exp);
 		}
-		
 	}
 	public void Disconnect () {
 		try {
