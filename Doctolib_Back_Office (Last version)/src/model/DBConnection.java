@@ -21,7 +21,7 @@ public class DBConnection {
 	public void Connect () {
 		this.uploadPilote();
 		String url = "jdbc:mysql://"+this.serveur+"/"+this.bdd; 
-		url += "?verifyServerCertificate=false&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		url += "?verifyServerCertificate=false&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 		try {
 			this.connection = DriverManager.getConnection(url, this.user, this.password);
 		}

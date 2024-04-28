@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import controller.UserController;
 
 public class SelectModel {
-	private static DBConnection bdd = new DBConnection ("localhost:3306","btsProject","phpmyadmin","root");
+	private static DBConnection bdd = new DBConnection ("localhost","btsProject","phpmyadmin","root");
 	
 	public static UserController selectUser(String login, String password) {
 		UserController user = null;
