@@ -27,6 +27,7 @@ import model.SelectModel;
 
 public class PanelPatients extends PanelModel implements ActionListener{
 	private JPanel mainContainer = new JPanel();
+	//Problem
 	private JTable patientList;
 	private JScrollPane tableScrollPanel;
 	private tableController tablePatient;
@@ -127,7 +128,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 			}
 			
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
+				// TODO Auto-gtableMaterielsenerated method stub
 				
 			}
 			
@@ -135,12 +136,13 @@ public class PanelPatients extends PanelModel implements ActionListener{
 				int row = 0; 
 				int idUser = 0; 
 				if (e.getClickCount()>=2) {
-					row = tablePatient.getSelectedRow(); 
+					row = patientList.getSelectedRow(); 
 					idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
-					int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer ce materiel", 
-							"Suppression Matérielle", JOptionPane.YES_NO_OPTION); 
+					int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer cet utilisateur ?", 
+							"Suppression de l'utilisateur", JOptionPane.YES_NO_OPTION); 
 					if (reponse == 0) {
 						//suppression dans la BDD
+						//problem here
 						DeleteModel.DeleteUser(idUser);
 						tablePatient.removeRow(row);
 						//suppression dans l'affichage de la table 
@@ -149,7 +151,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 					}
 				}
 				else {
-					row = tablePatient.getSelectedRow();
+					row = patientList.getSelectedRow();
 					idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
 					String firstName = tablePatient.getValueAt(row, 1).toString(); 
 					String lastName = tablePatient.getValueAt(row, 2).toString(); 

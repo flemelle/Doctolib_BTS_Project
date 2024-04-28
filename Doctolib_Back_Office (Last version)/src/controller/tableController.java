@@ -52,10 +52,10 @@ public class tableController extends AbstractTableModel{
 		return this.header[column];
 	}
 
-	public int getSelectedRow() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	// public int getSelectedRow() {
+	// 	// TODO Auto-generated method stub
+	// 	return 0;
+	// }
 	public void removeRow(int row) {
 		Object matrice [][] = new Object [this.data.length-1][this.header.length];
 		//on recopie les donnees dans la matrice 
