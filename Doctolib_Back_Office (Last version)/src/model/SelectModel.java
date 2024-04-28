@@ -18,7 +18,7 @@ public class SelectModel {
 			bdd.Connect();
 			//création d'un curseur pour exécuter la requete 
 			Statement req = bdd.getMaConnexion().createStatement(); 
-			//execution de la requete et récuperation d'un resultat 
+			//execution de la requete et récuperation d'un resultat -
 			ResultSet data = req.executeQuery(requete); 
 			//s'il y a un resultat, on récupere les champs 
 			if (data.next()) {
@@ -49,7 +49,7 @@ public class SelectModel {
 			bdd.Connect(); 
 			Statement req = bdd.getMaConnexion().createStatement(); 
 			ResultSet data = req.executeQuery(requete); 
-			if (data.next()) {
+			while (data.next()) {
 				UserController user = new UserController (
 						data.getInt("idUser"),   
 						data.getInt("age"), 

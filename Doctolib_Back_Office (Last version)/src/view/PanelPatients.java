@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -84,28 +85,28 @@ public class PanelPatients extends PanelModel implements ActionListener{
 		this.tablePatient = new tableController(header, this.getData(""));
 		this.patientList = new JTable(this.tablePatient); 
 		this.tableScrollPanel = new JScrollPane(this.patientList); 
-		this.tableScrollPanel.setBounds(400, 80,400, 220);
+		this.tableScrollPanel.setBounds(400, 80, 400, 220);
 		this.add(this.tableScrollPanel); 
 		
 		//Button listener
 		this.saveButton.addActionListener(this);
 		this.cancelButton.addActionListener(this);
 		
-		ageField.addKeyListener(new KeyAdapter() {
-	         public void keyPressed(KeyEvent ke) {
-	            
-	        	 //if ()
-	        	 String value = ageField.getText();
-	            int l = value.length();
-	            if (value.charAt(0) == '0' && l ==10) {
-	            	ageField.setEditable(true);
-	               label.setText("");
-	            } else {
-	            	ageField.setEditable(false);
-	               label.setText("* Enter only numeric digits(0-9)");
-	            }
-	         }
-	      });
+//		ageField.addKeyListener(new KeyAdapter() {
+//	         public void keyPressed(KeyEvent ke) {
+//	            
+//	        	 //if ()
+//	        	 String value = ageField.getText();
+//	            int l = value.length();
+//	            if (value.charAt(0) == '0' && l ==10) {
+//	            	ageField.setEditable(true);
+//	               label.setText("");
+//	            } else {
+//	            	ageField.setEditable(false);
+//	               label.setText("* Enter only numeric digits(0-9)");
+//	            }
+//	         }
+//	      });
 		
 		//User Tablemouse listener
 		this.patientList.addMouseListener(new MouseListener() {
@@ -132,28 +133,28 @@ public class PanelPatients extends PanelModel implements ActionListener{
 			
 			public void mouseClicked(MouseEvent e) {
 				int row = 0; 
-				int idUser; 
+				int idUser = 0; 
 				if (e.getClickCount()>=2) {
 					row = tablePatient.getSelectedRow(); 
-					idUser= Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
+					idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
 					int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer ce materiel", 
 							"Suppression Matérielle", JOptionPane.YES_NO_OPTION); 
 					if (reponse == 0) {
 						//suppression dans la BDD
-						//DeleteModel.DeleteUser(User);
+						DeleteModel.DeleteUser(idUser);
+						tablePatient.removeRow(row);
 						//suppression dans l'affichage de la table 
 						//tablePatient.supprimerLigne(row);
-						userNumber.setText("Nombre de matériels disponibles :"+tablePatient.getRowCount());
+						userNumber.setText("Nombre de matériels disponibles :" + tablePatient.getRowCount());
 					}
 				}
 				else {
 					row = tablePatient.getSelectedRow();
 					idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
-					String firstName =tablePatient.getValueAt(row, 1).toString(); 
-					String lastName =tablePatient.getValueAt(row, 2).toString(); 
-					String address =tablePatient.getValueAt(row, 5).toString();
-					
-					int age = Integer.parseInt(tablePatient.getValueAt(row, 3).toString()); 
+					String firstName = tablePatient.getValueAt(row, 1).toString(); 
+					String lastName = tablePatient.getValueAt(row, 2).toString(); 
+					String address = tablePatient.getValueAt(row, 5).toString();
+					String age = tablePatient.getValueAt(row, 3).toString(); 
 					String mail = tablePatient.getValueAt(row, 4).toString(); 
 					String password = tablePatient.getValueAt(row, 6).toString(); 
 					String role = tablePatient.getValueAt(row, 7).toString(); 
@@ -162,7 +163,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 					//idUserField.setText(user.getIdUser()); 
 					firstNameField.setText(firstName);
 					lastNameField.setText(lastName);
-					//ageField.setText(age);
+					ageField.setText(age);
 					mailField.setText(mail);
 					addressField.setText(address);
 					passwordField.setText(password);
@@ -173,7 +174,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 			}
 		});
 	}
-	public Object [][] getData (String filtre){
+	public Object [][] getData (String filter){
 		ArrayList<UserController> userList = SelectModel.selectUserList(); 
 		Object [][] matrice = new Object[userList.size()][8];
 		int i = 0; 

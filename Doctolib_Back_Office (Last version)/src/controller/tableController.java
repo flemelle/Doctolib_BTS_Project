@@ -56,5 +56,20 @@ public class tableController extends AbstractTableModel{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public void removeRow(int row) {
+		Object matrice [][] = new Object [this.data.length-1][this.header.length];
+		//on recopie les donnees dans la matrice 
+		int j = 0; 
+		for (int i=0; i <this.data.length; i++) {
+			if(i != row) {
+					matrice [j] = this.data[i]; 
+					j++;
+			}
+		}
+		//on ecrase les données par la nouvelle matrice
+		this.data = matrice; 
+		//on applique les changements 
+		this.fireTableDataChanged();
+	}
 	
 }

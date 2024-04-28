@@ -10,8 +10,8 @@ import controller.UserController;
 public class DeleteModel {
 	private static DBConnection bdd = new DBConnection ("localhost:3306","btsProject","phpmyadmin","root");
 	
-	public static void DeleteUser(UserController user) {
-		String requete = "DELETE FROM btsProject_User where idUser = '"+user.idUser+"';";
+	public static void DeleteUser(int idUser) {
+		String requete = "DELETE FROM btsProject_User WHERE idUser = "+idUser+";";
 		try {
 			bdd.Connect();
 			//création d'un curseur pour exécuter la requete 
