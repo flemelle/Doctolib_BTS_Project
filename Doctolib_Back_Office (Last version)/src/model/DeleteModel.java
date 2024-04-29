@@ -17,13 +17,14 @@ public class DeleteModel {
 			//création d'un curseur pour exécuter la requete 
 			Statement req = bdd.getMaConnexion().createStatement(); 
 			//execution de la requete et récuperation d'un resultat 
-			req.executeQuery(requete); 
+			req.execute(requete); 
 			//s'il y a un resultat, on récupere les champs 
 			req.close();
 			bdd.Disconnect();
 		}
 		catch (SQLException exp) {
 			System.out.println("Erreur de requete : " +requete);
+			System.out.println(exp);
 		}
 	}
 	

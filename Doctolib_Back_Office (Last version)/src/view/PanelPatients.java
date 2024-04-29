@@ -175,6 +175,11 @@ public class PanelPatients extends PanelModel implements ActionListener{
 				
 			}
 		});
+		//Nombre de matériels dans la table :
+		int nbUsers = this.tablePatient.getRowCount(); 
+		userNumber = new JLabel("Nombre de matériels disponibles : " + nbUsers);
+		userNumber.setBounds(300, 360, 300, 20);
+		this.add(userNumber); 
 	}
 	public Object [][] getData (String filter){
 		ArrayList<UserController> userList = SelectModel.selectUserList(); 
