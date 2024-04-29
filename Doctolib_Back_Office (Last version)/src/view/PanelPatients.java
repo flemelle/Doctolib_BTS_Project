@@ -143,7 +143,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 					if (reponse == 0) {
 						//suppression dans la BDD
 						//problem here
-						DeleteModel.DeleteUser(idUser);
+						UserController.DeleteUser(idUser);
 						tablePatient.removeRow(row);
 						//suppression dans l'affichage de la table 
 						//tablePatient.supprimerLigne(row);
@@ -198,8 +198,68 @@ public class PanelPatients extends PanelModel implements ActionListener{
 		}
 		return matrice;
 	}
+	public void clearFields() {
+		firstNameField.setText("");
+		lastNameField.setText("");
+		ageField.setText("");
+		mailField.setText("");
+		addressField.setText("");
+		passwordField.setText("");
+		roleField.setText("");
+		saveButton.setText("Enregistrer");
+	}
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getSource() == this.cancelButton) {
+			clearFields();
+		}
+		else if (e.getSource() == this.saveButton) {
+			int idUser = Integer.parseInt(this.idUserField.getText());
+			String firstName = this.firstNameField.getText(); 
+			String lastName = this.lastNameField.getText(); 
+			String address = this.addressField.getText();
+			int age =  Integer.parseInt(this.ageField.getText()); 
+			String mail = this.mailField.getText(); 
+			String password = this.passwordField.getText(); 
+			String role = this.roleField.getText(); 
+			UserController user = new UserController (idUser, firstName, lastName, mail, address, password, role, age );
+			if(this.saveButton.getText().equals("Modifier")) {
+				int row = 0; 
+				row = patientList.getSelectedRow(); 
+				idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
+				user.UpdateUser(idUser);
+				Object updatedRow [] = {idUser, firstName, lastName, mail, address, role, age };
+				this.tablePatient.updateTable(updatedRow);
+				JOptionPane.showMessageDialog(this, "Modification effectuée");
+				this.clearFields();
+				this.saveButton.setText("Enregistrer");
+			} else if(this.saveButton.getText().equals("Sauvegarder")) {
+				
+			} 
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -15,6 +16,22 @@ public class SQLRequestModel {
 		 }
 		 catch (SQLException exp) {
 			 System.out.println("Erreur de requete : " +request);
+			 System.out.println(exp);
 		 }
+	}
+	public static ResultSet executeQuerySQL(String request) {
+		 try {
+			 bdd.Connect();
+			 Statement unStat = bdd.getMaConnexion().createStatement();
+			 ResultSet data = unStat.executeQuery(request); 
+			 unStat.close();
+			 bdd.Disconnect();
+			 return data;
+		 }
+		 catch (SQLException exp) {
+			 System.out.println("Erreur de requete : " +request);
+			 System.out.println(exp);
+		 }
+		 return null;
 	}
 }

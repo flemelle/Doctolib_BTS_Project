@@ -71,5 +71,8 @@ public class tableController extends AbstractTableModel{
 		//on applique les changements 
 		this.fireTableDataChanged();
 	}
+	public void updateTable(Object row []) {
+		
+	}
 	
 }

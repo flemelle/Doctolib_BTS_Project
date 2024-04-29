@@ -23,14 +23,14 @@ public class SelectModel {
 			//s'il y a un resultat, on récupere les champs 
 			if (data.next()) {
 				user = new UserController (
-						data.getInt("idUser"),   
-						data.getInt("age"), 
+						data.getInt("idUser"),
 						data.getString("lastName"), 
 						data.getString("firstName"), 
 						data.getString("mail"), 
 						data.getString("address"), 
 						data.getString("password"), 
-						data.getString("role")
+						data.getString("role"),   
+						data.getInt("age")
 						);
 			}
 			req.close();
@@ -51,14 +51,14 @@ public class SelectModel {
 			ResultSet data = req.executeQuery(requete); 
 			while (data.next()) {
 				UserController user = new UserController (
-						data.getInt("idUser"),   
-						data.getInt("age"), 
+						data.getInt("idUser"),
 						data.getString("lastName"), 
 						data.getString("firstName"), 
 						data.getString("mail"), 
 						data.getString("address"), 
 						data.getString("password"), 
-						data.getString("role")
+						data.getString("role"), 
+						data.getInt("age")
 						);
 				userList.add(user);
 			}
