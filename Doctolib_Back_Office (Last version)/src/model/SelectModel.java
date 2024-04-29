@@ -42,6 +42,7 @@ public class SelectModel {
 		return user;
 	}
 	
+	
 	public static ArrayList<UserController>	 selectUserList() {
 		ArrayList<UserController> userList = new ArrayList<UserController>();
 		String requete = "SELECT * FROM btsProject_User;";
