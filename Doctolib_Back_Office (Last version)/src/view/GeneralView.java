@@ -13,12 +13,14 @@ public class GeneralView extends JFrame implements ActionListener{
 	private JButton accountPageButton = new JButton("Compte");
 	private JButton doctorsPageButton = new JButton("Médecins");
 	private JButton patientsPageButton = new JButton("Patients");
+	private JButton usersPageButton = new JButton("Utilisateurs");
 	private JButton appoitmentsPageButton = new JButton("Rendez-vous");
 	private JButton exit = new JButton("Quitter");
 	private JPanel navigationPanel = new JPanel();
 	private static PanelAccount panelAccount = new PanelAccount();
 	private static PanelDoctors panelDoctors = new PanelDoctors();
 	private static PanelPatients panelPatients = new PanelPatients();
+	private static PanelUsers panelUsers = new PanelUsers();
 	private static PanelAppointments panelAppointements = new PanelAppointments();
 	
 	public GeneralView() {
@@ -35,11 +37,13 @@ public class GeneralView extends JFrame implements ActionListener{
 		navigationPanel.setLayout(new GridLayout(1,4));
 		navigationPanel.add(this.doctorsPageButton);
 		navigationPanel.add(this.patientsPageButton);
+		navigationPanel.add(this.usersPageButton);
 		navigationPanel.add(this.appoitmentsPageButton);
 		navigationPanel.add(this.accountPageButton);
 		this.add(navigationPanel);
 		
 		//Clickable buttons
+		this.usersPageButton.addActionListener(this);
 		this.patientsPageButton.addActionListener(this);
 		this.doctorsPageButton.addActionListener(this);
 		this.appoitmentsPageButton.addActionListener(this);
@@ -47,10 +51,12 @@ public class GeneralView extends JFrame implements ActionListener{
 		this.add(panelAccount);
 		this.add(panelDoctors);
 		this.add(panelPatients);
+		this.add(panelUsers);
 		this.add(panelAppointements);
 	}
 	public void display(int tab) {
 		panelAccount.setVisible(false);
+		panelUsers.setVisible(false);
 		panelDoctors.setVisible(false);
 		panelPatients.setVisible(false);
 		panelAppointements.setVisible(false);
@@ -67,6 +73,9 @@ public class GeneralView extends JFrame implements ActionListener{
 			case 4 :
 				panelAppointements.setVisible(true);
 				break;
+			case 5 :
+				panelUsers.setVisible(true);
+				break;
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -78,7 +87,9 @@ public class GeneralView extends JFrame implements ActionListener{
 		} else if (this.patientsPageButton == e.getSource()) {
 			display(3);			
 		} else if (this.appoitmentsPageButton == e.getSource()) {
-			display(4);
+			display(4);		
+		} else if (this.usersPageButton == e.getSource()) {
+			display(5);
 		} else if (this.exit == e.getSource()) {
 			//Close navigation
 			//Back to connection page
