@@ -10,7 +10,7 @@ import controller.UserController;
 public class SelectModel {
 	private static DBConnection bdd = new DBConnection ("localhost","btsProject","phpmyadmin","root");
 	
-	public static UserController selectUser(String login, String password) {
+	public static UserController SelectUser(String login, String password) {
 		UserController user = null;
 		String requete = "SELECT * FROM btsProject_User where mail = '"+login
 				+ "' AND password ='"+password+"' AND role = 'admin';";
@@ -43,7 +43,7 @@ public class SelectModel {
 	}
 	
 	
-	public static ArrayList<UserController>	 selectUserList() {
+	public static ArrayList<UserController> SelectAll() {
 		ArrayList<UserController> userList = new ArrayList<UserController>();
 		String requete = "SELECT * FROM btsProject_User;";
 		try {

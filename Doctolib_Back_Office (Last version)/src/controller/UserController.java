@@ -1,7 +1,10 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.DeleteModel;
 import model.InsertModel;
+import model.SelectModel;
 import model.UpdateModel;
 
 public class UserController {
@@ -74,13 +77,18 @@ public class UserController {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public String getRole() {
 		return role;
 	}
-
+	
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public static ArrayList<UserController> SelectAll() {
+		return SelectModel.SelectAll();
+		
 	}
 	public void Delete() {
 		DeleteModel.Delete(this);

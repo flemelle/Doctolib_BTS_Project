@@ -71,7 +71,7 @@ public class ConnectionView extends JFrame implements ActionListener, KeyListene
 		String mail = this.loginField.getText();
 		String password = new String(this.passwordField.getPassword());
 		
-		UserController user = SelectModel.selectUser(mail, password);
+		UserController user = SelectModel.SelectUser(mail, password);
 		if (user == null) {
 			JOptionPane.showMessageDialog(this, "Identifiants incorrectes");
 //			this.loginField.setText("");
