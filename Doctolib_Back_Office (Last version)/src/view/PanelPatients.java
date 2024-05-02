@@ -20,7 +20,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import controleur.Controleur;
 import controller.UserController;
 import controller.tableController;
 import model.DeleteModel;
@@ -135,16 +134,14 @@ public class PanelPatients extends PanelModel implements ActionListener{
 			
 			public void mouseClicked(MouseEvent e) {
 				int row = 0; 
-				int idUser = 0; 
 				if (e.getClickCount()>=2) {
-					row = patientList.getSelectedRow(); 
-					idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
+					row = patientList.getSelectedRow();
+					UserController user = new UserController(Integer.parseInt(tablePatient.getValueAt(row, 0).toString()), tablePatient.getValueAt(row, 1).toString(), tablePatient.getValueAt(row, 2).toString(), tablePatient.getValueAt(row, 7).toString(), tablePatient.getValueAt(row, 4).toString(), tablePatient.getValueAt(row, 5).toString(),tablePatient.getValueAt(row, 6).toString(), Integer.parseInt(tablePatient.getValueAt(row, 3).toString()));
 					int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer cet utilisateur ?", 
 							"Suppression de l'utilisateur", JOptionPane.YES_NO_OPTION); 
 					if (reponse == 0) {
 						//suppression dans la BDD
-						//problem here
-						UserController.Delete(idUser);
+						user.Delete();
 						tablePatient.removeRow(row);
 						//suppression dans l'affichage de la table 
 						//tablePatient.supprimerLigne(row);
@@ -153,7 +150,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 				}
 				else {
 					row = patientList.getSelectedRow();
-					idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
+					String idUser = tablePatient.getValueAt(row, 0).toString();
 					String firstName = tablePatient.getValueAt(row, 1).toString(); 
 					String lastName = tablePatient.getValueAt(row, 2).toString(); 
 					String address = tablePatient.getValueAt(row, 5).toString();
@@ -163,7 +160,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 					String role = tablePatient.getValueAt(row, 7).toString(); 
 					//remplissage du formulaire 
 
-					//idUserField.setText(user.getIdUser()); 
+					idUserField.setText(idUser); 
 					firstNameField.setText(firstName);
 					lastNameField.setText(lastName);
 					ageField.setText(age);
@@ -178,7 +175,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 		});
 		//Nombre de matériels dans la table :
 		int nbUsers = this.tablePatient.getRowCount(); 
-		userNumber = new JLabel("Nombre de matériels disponibles : " + nbUsers);
+		userNumber = new JLabel("Nombre de matériels disponnibles : " + nbUsers);
 		userNumber.setBounds(300, 360, 300, 20);
 		this.add(userNumber); 
 	}
@@ -214,7 +211,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 			clearFields();
 		}
 		else if (e.getSource() == this.saveButton) {
-			int idUser = Integer.parseInt(this.idUserField.getText());
+			int idUser = 0;
 			String firstName = this.firstNameField.getText(); 
 			String lastName = this.lastNameField.getText(); 
 			String address = this.addressField.getText();

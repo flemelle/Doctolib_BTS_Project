@@ -1,6 +1,8 @@
 package controller;
 
 import model.DeleteModel;
+import model.InsertModel;
+import model.UpdateModel;
 
 public class UserController {
 	public int idUser, age;
@@ -80,13 +82,13 @@ public class UserController {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public static void Delete() {
+	public void Delete() {
 		DeleteModel.Delete(this);
 	}
-	public static void Update() {
-		//UpdateModel.UpdateUser(IdUser);
+	public void Update() {
+		UpdateModel.Update(this);
 	}
-	public static void Add() {
-		//InsertModel.InsertUser(IdUser);
+	public void Add() {
+		InsertModel.Insert(this);
 	}
 }
