@@ -4,7 +4,7 @@ import model.DeleteModel;
 
 public class UserController {
 	public int idUser, age;
-	private String firstName, lastName, mail, address, password, role; 
+	public String firstName, lastName, mail, address, password, role; 
 	
 	public UserController(int idUser, String firstName, String lastName, String mail, String address, String password, String role, int age) {
 		this.setIdUser(idUser);
@@ -80,13 +80,13 @@ public class UserController {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public static void DeleteUser(int IdUser) {
-		DeleteModel.DeleteUser(IdUser);
+	public static void Delete() {
+		DeleteModel.Delete(this);
 	}
-	public static void UpdateUser(int IdUser) {
+	public static void Update() {
 		//UpdateModel.UpdateUser(IdUser);
 	}
-	public static void AddUser(int IdUser) {
+	public static void Add() {
 		//InsertModel.InsertUser(IdUser);
 	}
 }

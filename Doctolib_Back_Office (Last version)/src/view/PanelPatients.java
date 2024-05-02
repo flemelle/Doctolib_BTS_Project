@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import controleur.Controleur;
 import controller.UserController;
 import controller.tableController;
 import model.DeleteModel;
@@ -143,7 +144,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 					if (reponse == 0) {
 						//suppression dans la BDD
 						//problem here
-						UserController.DeleteUser(idUser);
+						UserController.Delete(idUser);
 						tablePatient.removeRow(row);
 						//suppression dans l'affichage de la table 
 						//tablePatient.supprimerLigne(row);
@@ -226,18 +227,40 @@ public class PanelPatients extends PanelModel implements ActionListener{
 				int row = 0; 
 				row = patientList.getSelectedRow(); 
 				idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
-				user.UpdateUser(idUser);
+				user.Update();
 				Object updatedRow [] = {idUser, firstName, lastName, mail, address, role, age };
 				this.tablePatient.updateTable(updatedRow);
 				JOptionPane.showMessageDialog(this, "Modification effectuée");
 				this.clearFields();
 				this.saveButton.setText("Enregistrer");
 			} else if(this.saveButton.getText().equals("Sauvegarder")) {
-				
+				boolean ok = true;
+				if(age < 0) {
+					JOptionPane.showMessageDialog(this, "Erreur, entrez un âge supérieur à 0");
+					this.ageField.setBackground(Color.red);
+					ok = false;
+				}else {
+					this.ageField.setBackground(Color.white);
+				}
+				if(ok) {
+					user.Add();
+					JOptionPane.showMessageDialog(this, "Nouvel utilisateur bien créé");
+					//récupération de l'ID donné par mysql 
+//					unMateriel = Controleur.selectWhereMateriel(designation, dateAchat); 
+//					
+//					JOptionPane.showMessageDialog(this, "Matériel inséré avec succés dans la BDD");
+//					//insertion dans l'affichage graphique 
+//					Object ligne[]= {unMateriel.getIdmateriel(), designation, dateAchat, prix, categorie};
+//					this.unTableau.ajouterLigne(ligne);
+//					lbMateriels.setText("Nombre de matériels disponibles :"+unTableau.getRowCount());
+//					
+//					this.viderChamps();
+				}
 			} 
 		}
 	}
 }
+
 
 
 
