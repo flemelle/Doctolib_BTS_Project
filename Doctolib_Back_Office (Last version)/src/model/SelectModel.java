@@ -5,12 +5,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import controller.AppointmentController;
+import controller.PrescriptionController;
 import controller.UserController;
 
 public class SelectModel {
 	private static DBConnection bdd = new DBConnection ("localhost","btsProject","phpmyadmin","root");
 	
-	public static UserController SelectUser(String login, String password) {
+	public static UserController VerifyCredential(String login, String password) {
 		UserController user = null;
 		String requete = "SELECT * FROM btsProject_User where mail = '"+login
 				+ "' AND password ='"+password+"' AND role = 'admin';";
@@ -43,6 +45,32 @@ public class SelectModel {
 	}
 	
 	
+//	public static UserController Select() {
+//		UserController user;
+//		String requete = "SELECT * FROM btsProject_User;";
+//		try {
+//			bdd.Connect(); 
+//			Statement req = bdd.getMaConnexion().createStatement(); 
+//			ResultSet data = req.executeQuery(requete); 
+//			user = new UserController (
+//					data.getInt("idUser"),
+//					data.getString("lastName"), 
+//					data.getString("firstName"), 
+//					data.getString("mail"), 
+//					data.getString("address"), 
+//					data.getString("password"), 
+//					data.getString("role"), 
+//					data.getInt("age")
+//					);
+//			req.close();
+//			bdd.Disconnect();
+//		}
+//		catch (SQLException exp) {
+//			System.out.println("Erreur de requete : " + requete);
+//		}
+//		return user;
+//	}
+
 	public static ArrayList<UserController> SelectAll() {
 		ArrayList<UserController> userList = new ArrayList<UserController>();
 		String requete = "SELECT * FROM btsProject_User;";
@@ -70,6 +98,16 @@ public class SelectModel {
 			System.out.println("Erreur de requete : " + requete);
 		}
 		return userList;
+	}
+	public static ArrayList<AppointmentController> SelectAll() {
+
+		ArrayList<AppointmentController> appointmentList = new ArrayList<AppointmentController>();
+		return appointmentList;
+	}
+	public static ArrayList<PrescriptionController> SelectAll() {
+
+		ArrayList<PrescriptionController> prescriptionList = new ArrayList<PrescriptionController>();
+		return prescriptionList;
 	}
 
 }

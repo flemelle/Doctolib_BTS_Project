@@ -1,15 +1,16 @@
 package controller;
 
 public class AppointmentController {
-	public int idAppointment,idPatient, idDoctor;
+	public int idAppointment;
 	public String dateAppointment, timeAppointment, reason;
-	public AppointmentController(int idAppointment, String dateAppointment, String timeAppointment, String reason, int idPatient, int idDoctor ) {
+	public UserController patient, doctor;
+	public AppointmentController(int idAppointment, String dateAppointment, String timeAppointment, String reason, UserController patient, UserController doctor ) {
 		this.idAppointment = idAppointment;
 		this.dateAppointment = dateAppointment;
 		this.timeAppointment = timeAppointment;
 		this.reason = reason;
-		this.idPatient = idPatient;
-		this.idDoctor = idDoctor;
+		this.patient = patient;
+		this.doctor = doctor;
 	}
 	public int getIdAppointment() {
 		return idAppointment;
@@ -17,17 +18,17 @@ public class AppointmentController {
 	public void setIdAppointment(int idAppointment) {
 		this.idAppointment = idAppointment;
 	}
-	public int getIdPatient() {
-		return idPatient;
+	public UserController getpatient() {
+		return patient;
 	}
-	public void setIdPatient(int idPatient) {
-		this.idPatient = idPatient;
+	public void setpatient(UserController patient) {
+		this.patient = patient;
 	}
-	public int getIdDoctor() {
-		return idDoctor;
+	public UserController getdoctor() {
+		return doctor;
 	}
-	public void setIdDoctor(int idDoctor) {
-		this.idDoctor = idDoctor;
+	public void setdoctor(UserController doctor) {
+		this.doctor = doctor;
 	}
 	public String getDateAppointment() {
 		return dateAppointment;

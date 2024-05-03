@@ -4,8 +4,8 @@ import view.GeneralView;
 import view.PanelAccount;
 
 public class Doctolib_Back_Office {
-	private static GeneralView GeneralView;
-	private static ConnectionView ConnectionView;
+	public static GeneralView GeneralView;
+	public static ConnectionView ConnectionView;
 
 	public static void main(String[] args) {
 		ConnectionView = new ConnectionView();

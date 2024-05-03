@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.Doctolib_Back_Office;
+
 public class GeneralView extends JFrame implements ActionListener{
 	private JButton accountPageButton = new JButton("Compte");
 	private JButton doctorsPageButton = new JButton("Médecins");
@@ -40,6 +42,7 @@ public class GeneralView extends JFrame implements ActionListener{
 		navigationPanel.add(this.usersPageButton);
 		navigationPanel.add(this.appoitmentsPageButton);
 		navigationPanel.add(this.accountPageButton);
+		navigationPanel.add(this.exit);
 		this.add(navigationPanel);
 		
 		//Clickable buttons
@@ -48,6 +51,9 @@ public class GeneralView extends JFrame implements ActionListener{
 		this.doctorsPageButton.addActionListener(this);
 		this.appoitmentsPageButton.addActionListener(this);
 		this.accountPageButton.addActionListener(this);
+		this.exit.addActionListener(this);
+		
+		//Panel Addition
 		this.add(panelAccount);
 		this.add(panelDoctors);
 		this.add(panelPatients);
@@ -91,8 +97,8 @@ public class GeneralView extends JFrame implements ActionListener{
 		} else if (this.usersPageButton == e.getSource()) {
 			display(5);
 		} else if (this.exit == e.getSource()) {
-			//Close navigation
-			//Back to connection page
+			Doctolib_Back_Office.GeneralView.setVisible(false);
+			Doctolib_Back_Office.ConnectionView.setVisible(true);
 		}
 	}
 }
