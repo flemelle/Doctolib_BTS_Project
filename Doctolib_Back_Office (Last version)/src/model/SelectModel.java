@@ -71,7 +71,7 @@ public class SelectModel {
 //		return user;
 //	}
 
-	public static ArrayList<UserController> SelectAll() {
+	public static ArrayList<UserController> SelectAllUser() {
 		ArrayList<UserController> userList = new ArrayList<UserController>();
 		String requete = "SELECT * FROM btsProject_User;";
 		try {
@@ -99,12 +99,12 @@ public class SelectModel {
 		}
 		return userList;
 	}
-	public static ArrayList<AppointmentController> SelectAll() {
+public static ArrayList<AppointmentController> SelectAllAppointment() {
 
 		ArrayList<AppointmentController> appointmentList = new ArrayList<AppointmentController>();
 		return appointmentList;
 	}
-	public static ArrayList<PrescriptionController> SelectAll() {
+	public static ArrayList<PrescriptionController> SelectAllPrescription() {
 
 		ArrayList<PrescriptionController> prescriptionList = new ArrayList<PrescriptionController>();
 		return prescriptionList;
