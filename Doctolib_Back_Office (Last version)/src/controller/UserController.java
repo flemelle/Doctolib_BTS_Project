@@ -87,7 +87,7 @@ public class UserController {
 	}
 	
 	public static ArrayList<UserController> SelectAll() {
-		return SelectModel.SelectAll();
+		return SelectModel.SelectAllUser();
 		
 	}
 	public void Delete() {
