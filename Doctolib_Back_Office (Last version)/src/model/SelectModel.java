@@ -44,36 +44,13 @@ public class SelectModel {
 		return user;
 	}
 	
-	
-//	public static UserController Select() {
-//		UserController user;
-//		String requete = "SELECT * FROM btsProject_User;";
-//		try {
-//			bdd.Connect(); 
-//			Statement req = bdd.getMaConnexion().createStatement(); 
-//			ResultSet data = req.executeQuery(requete); 
-//			user = new UserController (
-//					data.getInt("idUser"),
-//					data.getString("lastName"), 
-//					data.getString("firstName"), 
-//					data.getString("mail"), 
-//					data.getString("address"), 
-//					data.getString("password"), 
-//					data.getString("role"), 
-//					data.getInt("age")
-//					);
-//			req.close();
-//			bdd.Disconnect();
-//		}
-//		catch (SQLException exp) {
-//			System.out.println("Erreur de requete : " + requete);
-//		}
-//		return user;
-//	}
-
-	public static ArrayList<UserController> SelectAllUser() {
+	//#region User
+	public static ArrayList<UserController> SelectAllUser(String role) {
 		ArrayList<UserController> userList = new ArrayList<UserController>();
-		String requete = "SELECT * FROM btsProject_User;";
+		String requete = "SELECT * FROM btsProject_User";
+		if (role != null){
+			requete =+ "WHERE role = '" + role + "';";
+		}
 		try {
 			bdd.Connect(); 
 			Statement req = bdd.getMaConnexion().createStatement(); 
@@ -82,7 +59,7 @@ public class SelectModel {
 				UserController user = new UserController (
 						data.getInt("idUser"),
 						data.getString("lastName"), 
-						data.getString("firstName"), 
+						data.getString("firstName"),
 						data.getString("mail"), 
 						data.getString("address"), 
 						data.getString("password"), 
@@ -99,15 +76,152 @@ public class SelectModel {
 		}
 		return userList;
 	}
-public static ArrayList<AppointmentController> SelectAllAppointment() {
 
+	public static UserController SelectUser(int idUser) {
+		ArrayList<UserController> userList = new ArrayList<UserController>();
+		String requete = "SELECT * FROM btsProject_User WHERE idUser = '".idUser."';";
+		try {
+			bdd.Connect(); 
+			Statement req = bdd.getMaConnexion().createStatement(); 
+			ResultSet data = req.executeQuery(requete); 
+			while (data.next()) {
+				UserController user = new UserController (
+						data.getInt("idUser"),
+						data.getString("lastName"), 
+						data.getString("firstName"),
+						data.getString("mail"), 
+						data.getString("address"), 
+						data.getString("password"), 
+						data.getString("role"), 
+						data.getInt("age")
+						);
+				userList.add(user);
+			}
+			req.close();
+			bdd.Disconnect();
+		}
+		catch (SQLException exp) {
+			System.out.println("Erreur de requete : " + requete);
+		}
+		return userList;
+	}
+	//#endregion
+	//#region Appointment
+	public static ArrayList<AppointmentController> SelectAllAppointment() {
 		ArrayList<AppointmentController> appointmentList = new ArrayList<AppointmentController>();
+		String requete = "SELECT * FROM btsProject_Appointment;";
+		try {
+			bdd.Connect(); 
+			Statement req = bdd.getMaConnexion().createStatement(); 
+			ResultSet data = req.executeQuery(requete); 
+			// UserController patient = new UserController();	
+			// UserController doctor = new UserController();	
+			while (data.next()) {
+				UserController patient = SelectUser(data.getInt("idPatient"));	
+				UserController doctor = SelectUser(data.getInt("idDoctor"));		
+				AppointmentController appointment = new AppointmentController (
+					data.getInt("idAppointment"),
+					data.getString("dateAppointment"),
+					data.getString("timeAppointment"),
+					data.getString("reason"),
+					patient,
+					doctor
+					);
+				appointmentList.add(appointment);
+			}
+			req.close();
+			bdd.Disconnect();
+		}
+		catch (SQLException exp) {
+			System.out.println("Erreur de requete : " + requete);
+		}
 		return appointmentList;
 	}
+	public static AppointmentController SelectAppointment(int idAppointment) {
+		ArrayList<AppointmentController> appointmentList = new ArrayList<AppointmentController>();
+		String requete = "SELECT * FROM btsProject_Appointment WHERE idAppointment = '" + idAppointment + "';";
+		try {
+			bdd.Connect(); 
+			Statement req = bdd.getMaConnexion().createStatement(); 
+			ResultSet data = req.executeQuery(requete);
+			while (data.next()) {
+				UserController patient = SelectUser(data.getInt("idPatient"));	
+				UserController doctor = SelectUser(data.getInt("idDoctor"));		
+				AppointmentController appointment = new AppointmentController (
+					data.getInt("idAppointment"),
+					data.getString("dateAppointment"),
+					data.getString("timeAppointment"),
+					data.getString("reason"),
+					patient,
+					doctor
+					);
+				appointmentList.add(appointment);
+			}
+			req.close();
+			bdd.Disconnect();
+		}
+		catch (SQLException exp) {
+			System.out.println("Erreur de requete : " + requete);
+		}
+		return appointmentList;
+	}
+	//endregion
+	//#region Prescription
 	public static ArrayList<PrescriptionController> SelectAllPrescription() {
 
 		ArrayList<PrescriptionController> prescriptionList = new ArrayList<PrescriptionController>();
+		String requete = "SELECT * FROM btsProject_Prescription;";
+		try {
+			bdd.Connect(); 
+			Statement req = bdd.getMaConnexion().createStatement(); 
+			ResultSet data = req.executeQuery(requete); 
+			while (data.next()) {
+				UserController patient = SelectUser(data.getInt("idPatient"));	
+				UserController doctor = SelectUser(data.getInt("idDoctor"));
+				PrescriptionController prescription = new PrescriptionController (
+						data.getInt("idPrescription"),
+						data.getString("datePrescription"), 
+						data.getString("content"),
+						patient,
+						doctor
+						);
+				prescriptionList.add(prescription);
+			}
+			req.close();
+			bdd.Disconnect();
+		}
+		catch (SQLException exp) {
+			System.out.println("Erreur de requete : " + requete);
+		}
 		return prescriptionList;
 	}
+	public static PrescriptionController SelectPrescription(idPrescription) {
 
+		ArrayList<PrescriptionController> prescriptionList = new ArrayList<PrescriptionController>();
+		String requete = "SELECT * FROM btsProject_Prescription WHERE idPrescription = '" + idPrescription + "';";
+		try {
+			bdd.Connect(); 
+			Statement req = bdd.getMaConnexion().createStatement(); 
+			ResultSet data = req.executeQuery(requete); 
+			while (data.next()) {
+				UserController patient = SelectUser(data.getInt("idPatient"));	
+				UserController doctor = SelectUser(data.getInt("idDoctor"));
+				PrescriptionController prescription = new PrescriptionController (
+						data.getInt("idPrescription"),
+						data.getString("datePrescription"), 
+						data.getString("content"),
+						patient,
+						doctor
+						);
+				prescriptionList.add(prescription);
+			}
+			req.close();
+			bdd.Disconnect();
+		}
+		catch (SQLException exp) {
+			System.out.println("Erreur de requete : " + requete);
+		}
+		return prescriptionList;
+	}
+	//#endregion
 }

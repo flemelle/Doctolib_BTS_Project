@@ -41,4 +41,19 @@ public class PrescriptionController {
 	public void setDoctor(UserController doctor) {
 		this.doctor = doctor;
 	}
+	public static ArrayList<UserController> SelectAll() {
+		return SelectModel.SelectAllPrescription();
+	}
+	public static ArrayList<UserController> Select(int idPrescription) {
+		return SelectModel.SelectAllPrescription(idPrescription);
+	}
+	public void Delete() {
+		DeleteModel.Delete(this);
+	}
+	public void Update() {
+		UpdateModel.Update(this);
+	}
+	public void Add() {
+		InsertModel.Insert(this);
+	}
 }

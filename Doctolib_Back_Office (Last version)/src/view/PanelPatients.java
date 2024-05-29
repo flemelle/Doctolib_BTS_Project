@@ -168,7 +168,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 		this.add(userNumber); 
 	}
 	public Object [][] getData (String filter){
-		ArrayList<UserController> userList = UserController.SelectAll(); 
+		ArrayList<UserController> userList = UserController.SelectAllPatients(); 
 		Object [][] matrice = new Object[userList.size()][7];
 		int i = 0; 
 		for (UserController user : userList) {

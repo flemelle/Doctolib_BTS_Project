@@ -48,4 +48,20 @@ public class AppointmentController {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+	public static ArrayList<UserController> SelectAll() {
+		return SelectModel.SelectAllAppointment();
+	}
+	public static ArrayList<UserController> Select(int idAppointment) {
+		//TO DO
+		this = SelectModel.SelectAllAppointment(idAppointment);
+	}
+	public void Delete() {
+		DeleteModel.Delete(this);
+	}
+	public void Update() {
+		UpdateModel.Update(this);
+	}
+	public void Add() {
+		InsertModel.Insert(this);
+	}
 }

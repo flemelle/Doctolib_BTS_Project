@@ -85,11 +85,27 @@ public class UserController {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
 	public static ArrayList<UserController> SelectAll() {
 		return SelectModel.SelectAllUser();
-		
 	}
+	
+	public static ArrayList<UserController> SelectAllPatients() {
+		return SelectModel.SelectAllUser('patient');
+	}
+	
+	public static ArrayList<UserController> SelectAllDoctors() {
+		return SelectModel.SelectAllUser('doctor');
+	}
+
+	public static ArrayList<UserController> SelectAllAdmin() {
+		return SelectModel.SelectAllUser('admin');
+	}
+
+	public static ArrayList<UserController> Select(int idUser) {
+		return SelectModel.SelectUser(idUser);
+	}
+	
 	public void Delete() {
 		DeleteModel.Delete(this);
 	}
