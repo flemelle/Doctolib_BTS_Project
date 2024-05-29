@@ -1,5 +1,12 @@
 package controller;
 
+import java.util.ArrayList;
+
+import model.DeleteModel;
+import model.InsertModel;
+import model.SelectModel;
+import model.UpdateModel;
+
 public class PrescriptionController {
 	public int idPrescription;
 	public String datePrescription, content;
@@ -41,11 +48,11 @@ public class PrescriptionController {
 	public void setDoctor(UserController doctor) {
 		this.doctor = doctor;
 	}
-	public static ArrayList<UserController> SelectAll() {
+	public static ArrayList<PrescriptionController> SelectAll() {
 		return SelectModel.SelectAllPrescription();
 	}
-	public static ArrayList<UserController> Select(int idPrescription) {
-		return SelectModel.SelectAllPrescription(idPrescription);
+	public static PrescriptionController Select(int idPrescription) {
+		return SelectModel.SelectPrescription(idPrescription);
 	}
 	public void Delete() {
 		DeleteModel.Delete(this);

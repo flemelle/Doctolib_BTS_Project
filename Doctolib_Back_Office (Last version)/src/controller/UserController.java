@@ -87,22 +87,22 @@ public class UserController {
 	}
 
 	public static ArrayList<UserController> SelectAll() {
-		return SelectModel.SelectAllUser();
+		return SelectModel.SelectAllUser(null);
 	}
 	
 	public static ArrayList<UserController> SelectAllPatients() {
-		return SelectModel.SelectAllUser('patient');
+		return SelectModel.SelectAllUser("patient");
 	}
 	
 	public static ArrayList<UserController> SelectAllDoctors() {
-		return SelectModel.SelectAllUser('doctor');
+		return SelectModel.SelectAllUser("doctor");
 	}
 
 	public static ArrayList<UserController> SelectAllAdmin() {
-		return SelectModel.SelectAllUser('admin');
+		return SelectModel.SelectAllUser("admin");
 	}
 
-	public static ArrayList<UserController> Select(int idUser) {
+	public static UserController Select(int idUser) {
 		return SelectModel.SelectUser(idUser);
 	}
 	

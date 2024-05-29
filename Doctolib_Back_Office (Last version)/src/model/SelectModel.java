@@ -49,7 +49,7 @@ public class SelectModel {
 		ArrayList<UserController> userList = new ArrayList<UserController>();
 		String requete = "SELECT * FROM btsProject_User";
 		if (role != null){
-			requete =+ "WHERE role = '" + role + "';";
+			requete += "WHERE role = '" + role + "';";
 		}
 		try {
 			bdd.Connect(); 
@@ -79,7 +79,7 @@ public class SelectModel {
 
 	public static UserController SelectUser(int idUser) {
 		ArrayList<UserController> userList = new ArrayList<UserController>();
-		String requete = "SELECT * FROM btsProject_User WHERE idUser = '".idUser."';";
+		String requete = "SELECT * FROM btsProject_User WHERE idUser = '"+ idUser +"';";
 		try {
 			bdd.Connect(); 
 			Statement req = bdd.getMaConnexion().createStatement(); 
@@ -195,7 +195,7 @@ public class SelectModel {
 		}
 		return prescriptionList;
 	}
-	public static PrescriptionController SelectPrescription(idPrescription) {
+	public static PrescriptionController SelectPrescription(int idPrescription) {
 
 		ArrayList<PrescriptionController> prescriptionList = new ArrayList<PrescriptionController>();
 		String requete = "SELECT * FROM btsProject_Prescription WHERE idPrescription = '" + idPrescription + "';";

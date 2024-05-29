@@ -1,5 +1,12 @@
 package controller;
 
+import java.util.ArrayList;
+
+import model.DeleteModel;
+import model.InsertModel;
+import model.SelectModel;
+import model.UpdateModel;
+
 public class AppointmentController {
 	public int idAppointment;
 	public String dateAppointment, timeAppointment, reason;
@@ -48,12 +55,11 @@ public class AppointmentController {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public static ArrayList<UserController> SelectAll() {
+	public static ArrayList<AppointmentController> SelectAll() {
 		return SelectModel.SelectAllAppointment();
 	}
-	public static ArrayList<UserController> Select(int idAppointment) {
-		//TO DO
-		this = SelectModel.SelectAllAppointment(idAppointment);
+	public static AppointmentController Select(int idAppointment) {
+		return SelectModel.SelectAppointment(idAppointment);
 	}
 	public void Delete() {
 		DeleteModel.Delete(this);
