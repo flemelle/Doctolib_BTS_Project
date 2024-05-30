@@ -96,22 +96,10 @@ public void actionPerformed(ActionEvent e) {
 		}
 	}
 
-	public Object [][] getData (String filter){
-		ArrayList<UserController> userList = UserController.SelectAllPatients(); 
-		Object [][] matrice = new Object[userList.size()][7];
-		int i = 0; 
-		for (UserController user : userList) {
-			matrice [i][0] = user.getIdUser();
-			matrice [i][1] = user.getFirstName();
-			matrice [i][2] = user.getLastName();
-			matrice [i][3] = user.getAge();
-			matrice [i][4] = user.getMail();
-			matrice [i][5] = user.getAddress(); 
-			matrice [i][6] = user.getRole();
-			matrice [i][7] = user.getPassword();
-			i++;
-		}
-		return matrice;
+	public Object [] getData (String filter){
+		//TO DO
+		UserController user = UserController.Select(15); 
+		return user;
 	}
 	
 }
