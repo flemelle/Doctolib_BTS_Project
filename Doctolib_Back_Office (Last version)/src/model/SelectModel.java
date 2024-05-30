@@ -49,7 +49,10 @@ public class SelectModel {
 		ArrayList<UserController> userList = new ArrayList<UserController>();
 		String requete = "SELECT * FROM btsProject_User";
 		if (role != null){
-			requete += "WHERE role = '" + role + "';";
+			requete += " WHERE role = '" + role + "';";
+		}else
+		{
+			requete += ";";
 		}
 		try {
 			bdd.Connect(); 
