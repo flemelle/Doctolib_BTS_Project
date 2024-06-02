@@ -1,30 +1,20 @@
 package model;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-
+import controller.AppointmentController;
+import controller.PrescriptionController;
 import controller.UserController;
 
 public class UpdateModel {
-	private static DBConnection bdd = new DBConnection ("localhost:3306","btsProject","phpmyadmin","root");
-	
-	public static void updateUser(UserController user) {
-		String requete = "UPDATE btsProject_User SET (firstName = "+user.getFirstName()+", lastName ="+user.getLastName()+" , age="+user.getAge()+", mail= "+user.getMail()+", address="+user.getAddress()+", role="+user.getRole()+") where idUser = '"+user.idUser+"';";
-		try {
-			bdd.Connect();
-			//création d'un curseur pour exécuter la requete 
-			Statement req = bdd.getMaConnexion().createStatement(); 
-			//execution de la requete et récuperation d'un resultat 
-			ResultSet data = req.executeQuery(requete); 
-			//s'il y a un resultat, on récupere les champs 
-			req.close();
-			bdd.Disconnect();
-		}
-		catch (SQLException exp) {
-			System.out.println("Erreur de requete : " +requete);
-		}
+	public static void Update(UserController user) {
+		String request = "UPDATE btsProject_User SET firstName = '"+user.firstName+"', lastName = '"+user.lastName+"' , age = '"+user.age+"', mail = '"+user.mail+"', address = '"+user.address+"', role = '"+user.role+"' WHERE idUser = '"+user.idUser+"';";
+		SQLRequestModel.executeSQL(request);
 	}
-
+	public static void Update(AppointmentController appointment) {
+		String request = "UPDATE btsProject_Appointment SET dateAppointment = '"+appointment.dateAppointment+"', timeAppointment = '"+appointment.timeAppointment+"' , reason = '"+appointment.reason+"', idPatient = '"+appointment.patient.idUser+"', idDoctor = '"+appointment.doctor.idUser+"' WHERE idAppointment = '"+appointment.idAppointment+"';";
+		SQLRequestModel.executeSQL(request);
+	}
+	public static void Update(PrescriptionController prescription) {
+		String request = "UPDATE btsProject_Prescription SET datePrescription = '"+prescription.datePrescription+"', content = '"+prescription.content+"' , idPatient = '"+prescription.patient.idUser+"', idDoctor = '"+prescription.doctor.idUser+"' WHERE idAppointment = '"+prescription.idPrescription+"';";
+		SQLRequestModel.executeSQL(request);
+	}
 }

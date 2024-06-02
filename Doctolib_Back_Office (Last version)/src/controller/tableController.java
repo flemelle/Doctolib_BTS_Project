@@ -56,6 +56,19 @@ public class tableController extends AbstractTableModel{
 	// 	// TODO Auto-generated method stub
 	// 	return 0;
 	// }
+	public void addRow(Object row[]) {
+		Object matrice [][] = new Object [this.data.length+1][this.header.length];
+		//on recopie les donnees dans la matrice 
+		for (int i=0; i <this.data.length; i++) {
+			matrice [i] = this.data[i]; 
+		}
+		//on ajoute la ligne dans la matrice 
+		matrice [this.data.length] = row;
+		//on ecrase les données par la nouvelle matrice
+		this.data = matrice; 
+		//on applique les changements 
+		this.fireTableDataChanged();
+	}
 	public void removeRow(int row) {
 		Object matrice [][] = new Object [this.data.length-1][this.header.length];
 		//on recopie les donnees dans la matrice 
@@ -64,6 +77,24 @@ public class tableController extends AbstractTableModel{
 			if(i != row) {
 					matrice [j] = this.data[i]; 
 					j++;
+			}
+		}
+		//on ecrase les données par la nouvelle matrice
+		this.data = matrice; 
+		//on applique les changements 
+		this.fireTableDataChanged();
+	}
+	public void updateTable(int rowNumber, Object row []) {
+		Object matrice [][] = new Object [this.data.length][this.header.length];
+		//on recopie les donnees dans la matrice 
+		int j = 0; 
+		for (int i=0; i <this.data.length; i++) {
+			if(i != rowNumber) {
+					matrice [j] = this.data[i]; 
+					j++;
+			}else {
+				matrice [j] = row; 
+				j++;
 			}
 		}
 		//on ecrase les données par la nouvelle matrice
