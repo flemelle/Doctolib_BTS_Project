@@ -1,7 +1,6 @@
 package controller;
 import view.ConnectionView;
 import view.GeneralView;
-import view.PanelAccount;
 
 public class Doctolib_Back_Office {
 	public static GeneralView GeneralView;
