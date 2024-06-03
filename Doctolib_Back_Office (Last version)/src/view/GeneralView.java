@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import controller.Doctolib_Back_Office;
 
 public class GeneralView extends JFrame implements ActionListener{
-	private JButton accountPageButton = new JButton("Compte");
 	private JButton doctorsPageButton = new JButton("Médecins");
 	private JButton patientsPageButton = new JButton("Patients");
 	private JButton usersPageButton = new JButton("Utilisateurs");
@@ -40,7 +39,6 @@ public class GeneralView extends JFrame implements ActionListener{
 		navigationPanel.add(this.patientsPageButton);
 		navigationPanel.add(this.usersPageButton);
 		navigationPanel.add(this.appoitmentsPageButton);
-		navigationPanel.add(this.accountPageButton);
 		navigationPanel.add(this.exit);
 		this.add(navigationPanel);
 		
@@ -49,7 +47,6 @@ public class GeneralView extends JFrame implements ActionListener{
 		this.patientsPageButton.addActionListener(this);
 		this.doctorsPageButton.addActionListener(this);
 		this.appoitmentsPageButton.addActionListener(this);
-		this.accountPageButton.addActionListener(this);
 		this.exit.addActionListener(this);
 		
 		//Panel Addition
