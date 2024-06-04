@@ -82,26 +82,29 @@ public class SelectModel {
 
 	public static UserController SelectUser(int idUser) {
 		UserController user = null;
-		String requete = "SELECT * FROM btsProject_User WHERE idUser = '"+ idUser +"';";
+		String requete = "SELECT * FROM btsProject_User WHERE idUser = '"+ idUser + "';";
 		try {
 			bdd.Connect(); 
 			Statement req = bdd.getMaConnexion().createStatement(); 
 			ResultSet data = req.executeQuery(requete); 
-			user = new UserController (
-				data.getInt("idUser"),
-				data.getString("lastName"), 
-				data.getString("firstName"),
-				data.getString("mail"), 
-				data.getString("address"), 
-				data.getString("password"), 
-				data.getString("role"), 
-				data.getInt("age")
-				);
-			req.close();
-			bdd.Disconnect();
+			if (data.next()) {
+				user = new UserController (
+					data.getInt("idUser"),
+					data.getString("firstName"),
+					data.getString("lastName"), 
+					data.getString("mail"), 
+					data.getString("address"), 
+					data.getString("password"), 
+					data.getString("role"), 
+					data.getInt("age")
+					);
+				req.close();
+				bdd.Disconnect();
+			}
 		}
 		catch (SQLException exp) {
 			System.out.println("Erreur de requete : " + requete);
+			System.out.println("Erreur : " + exp);
 		}
 		return user;
 	}
@@ -208,7 +211,7 @@ public class SelectModel {
 				prescription = new PrescriptionController (
 					data.getInt("idPrescription"),
 					data.getString("datePrescription"), 
-					data.getString("content"),
+					data.getString("reason"),
 					patient,
 					doctor
 					);
