@@ -102,10 +102,10 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 				if (e.getClickCount()>=2) {
 					row = appointmentList.getSelectedRow();
 					UserController patient = UserController.Select(7);
-					UserController doctor = UserController.Select(7);
+					UserController doctor = UserController.Select(5);
 					AppointmentController appointment = new AppointmentController(Integer.parseInt(tableAppointment.getValueAt(row, 0).toString()), tableAppointment.getValueAt(row, 1).toString(), tableAppointment.getValueAt(row, 2).toString(), tableAppointment.getValueAt(row, 3).toString(), patient,  doctor);
-					int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer cet utilisateur ?", 
-							"Suppression de l'utilisateur", JOptionPane.YES_NO_OPTION); 
+					int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer ce rendez-vous ?", 
+							"Suppression du rendez-vous ", JOptionPane.YES_NO_OPTION); 
 					if (reponse == 0) {
 						//suppression dans la BDD
 						appointment.Delete();
@@ -149,10 +149,10 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 			matrice [i][1] = appointment.getDateAppointment();
 			matrice [i][2] = appointment.getTimeAppointment();
 			matrice [i][3] = appointment.getReason();
-			matrice [i][4] = appointment.getdoctor().idUser;
-			matrice [i][5] = appointment.getdoctor().firstName + " " + appointment.getdoctor().lastName;
-			matrice [i][6] = appointment.getpatient().idUser;
-			matrice [i][7] = appointment.getpatient().firstName + " " + appointment.getpatient().lastName;
+			matrice [i][4] = appointment.getDoctor().idUser;
+			matrice [i][5] = appointment.getDoctor().firstName + " " + appointment.getDoctor().lastName;
+			matrice [i][6] = appointment.getPatient().idUser;
+			matrice [i][7] = appointment.getPatient().firstName + " " + appointment.getPatient().lastName;
 			i++;
 		}
 		return matrice;
@@ -201,7 +201,7 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 				}
 				if(ok) {
 					appointment.Add();
-					JOptionPane.showMessageDialog(this, "Nouvel utilisateur bien créé");
+					JOptionPane.showMessageDialog(this, "Nouveau rendez-vous bien créé");
 					//récupération de l'ID donné par mysql 
 					ArrayList<AppointmentController> appointmentList = AppointmentController.SelectAll();  
 					AppointmentController newappointment = appointmentList.get(appointmentList.size() - 1);

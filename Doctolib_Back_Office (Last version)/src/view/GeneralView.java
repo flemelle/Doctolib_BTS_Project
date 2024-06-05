@@ -16,12 +16,14 @@ public class GeneralView extends JFrame implements ActionListener{
 	private JButton patientsPageButton = new JButton("Patients");
 	private JButton usersPageButton = new JButton("Utilisateurs");
 	private JButton appoitmentsPageButton = new JButton("Rendez-vous");
+	private JButton prescriptionsPageButton = new JButton("Ordonnaces");
 	private JButton exit = new JButton("Quitter");
 	private JPanel navigationPanel = new JPanel();
 	private static PanelDoctors panelDoctors = new PanelDoctors();
 	private static PanelPatients panelPatients = new PanelPatients();
 	private static PanelUsers panelUsers = new PanelUsers();
 	private static PanelAppointments panelAppointements = new PanelAppointments();
+	private static PanelPrescriptions panelPrescriptions = new PanelPrescriptions();
 	
 	public GeneralView() {
 		//JFrame set up
@@ -39,6 +41,7 @@ public class GeneralView extends JFrame implements ActionListener{
 		navigationPanel.add(this.patientsPageButton);
 		navigationPanel.add(this.usersPageButton);
 		navigationPanel.add(this.appoitmentsPageButton);
+		navigationPanel.add(this.prescriptionsPageButton);
 		navigationPanel.add(this.exit);
 		this.add(navigationPanel);
 		
@@ -47,6 +50,7 @@ public class GeneralView extends JFrame implements ActionListener{
 		this.patientsPageButton.addActionListener(this);
 		this.doctorsPageButton.addActionListener(this);
 		this.appoitmentsPageButton.addActionListener(this);
+		this.prescriptionsPageButton.addActionListener(this);
 		this.exit.addActionListener(this);
 		
 		//Panel Addition
@@ -54,6 +58,7 @@ public class GeneralView extends JFrame implements ActionListener{
 		this.add(panelPatients);
 		this.add(panelUsers);
 		this.add(panelAppointements);
+		this.add(panelPrescriptions);
 	}
 	public void display(int tab) {
 		panelUsers.setVisible(false);
@@ -73,6 +78,9 @@ public class GeneralView extends JFrame implements ActionListener{
 			case 5 :
 				panelUsers.setVisible(true);
 				break;
+			case 6 :
+				panelPrescriptions.setVisible(true);
+				break;
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -85,6 +93,8 @@ public class GeneralView extends JFrame implements ActionListener{
 			display(4);		
 		} else if (this.usersPageButton == e.getSource()) {
 			display(5);
+		} else if (this.prescriptionsPageButton == e.getSource()) {
+			display(6);
 		} else if (this.exit == e.getSource()) {
 			Doctolib_Back_Office.GeneralView.setVisible(false);
 			Doctolib_Back_Office.ConnectionView.setVisible(true);

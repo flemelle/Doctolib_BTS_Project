@@ -25,16 +25,16 @@ public class AppointmentController {
 	public void setIdAppointment(int idAppointment) {
 		this.idAppointment = idAppointment;
 	}
-	public UserController getpatient() {
+	public UserController getPatient() {
 		return patient;
 	}
-	public void setpatient(UserController patient) {
+	public void setPatient(UserController patient) {
 		this.patient = patient;
 	}
-	public UserController getdoctor() {
+	public UserController getDoctor() {
 		return doctor;
 	}
-	public void setdoctor(UserController doctor) {
+	public void setDoctor(UserController doctor) {
 		this.doctor = doctor;
 	}
 	public String getDateAppointment() {
