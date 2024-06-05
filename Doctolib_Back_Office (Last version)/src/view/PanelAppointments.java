@@ -21,20 +21,17 @@ import controller.UserController;
 import controller.tableController;
 
 public class PanelAppointments extends PanelModel implements ActionListener{
-	private JTable patientList;
+	private JTable appointmentList;
 	private JScrollPane tableScrollPanel;
-	private tableController tablePatient;
+	private tableController tableAppointment;
 	
 
 	private JPanel formAppointmentPanel = new JPanel(); 
-	private JTextField idAppointment = new JTextField(); 
-	private JTextField dateAppointment = new JTextField();
-	private JTextField timeAppointment = new JTextField();
-	private JTextField reason  = new JTextField();
-	private JTextField Patient = new JTextField();
-	private JTextField Doctor = new JTextField();
-	private JTextField idPatient = new JTextField();
-	private JTextField idDoctor = new JTextField();
+	private JTextField dateAppointmentField = new JTextField();
+	private JTextField timeAppointmentField = new JTextField();
+	private JTextField reasonField  = new JTextField();
+	private JTextField idPatientField = new JTextField();
+	private JTextField idDoctorField = new JTextField();
 	private JButton cancelButton = new JButton("Annuler"); 
 	private JButton saveButton= new JButton("Enregistrer");
 	
@@ -44,31 +41,31 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 //		
 		this.formAppointmentPanel.setBounds(50, 50, 300, 250);
 
-		this.formAppointmentPanel.setLayout(new GridLayout(8, 2));
+		this.formAppointmentPanel.setLayout(new GridLayout(6, 2));
 		this.formAppointmentPanel.add(new JLabel("Date : "));
-		this.formAppointmentPanel.add(this.dateAppointment);
-		this.formAppointmentPanel.add(new JLabel("Durée : "));
-		this.formAppointmentPanel.add(this.timeAppointment);
+		this.formAppointmentPanel.add(this.dateAppointmentField);
+		this.formAppointmentPanel.add(new JLabel("Heure : "));
+		this.formAppointmentPanel.add(this.timeAppointmentField);
 		this.formAppointmentPanel.add(new JLabel("Topic : "));
-		this.formAppointmentPanel.add(this.reason );
+		this.formAppointmentPanel.add(this.reasonField );
 		// this.formAppointmentPanel.add(new JLabel("Id Médecin : "));
 		// this.formAppointmentPanel.add(this.idDoctor);
 		// this.formAppointmentPanel.add(new JLabel("Id Patient : "));
 		// this.formAppointmentPanel.add(this.idPatient);
 		this.formAppointmentPanel.add(new JLabel("Médecin : "));
-		this.formAppointmentPanel.add(this.Doctor);
+		this.formAppointmentPanel.add(this.idDoctorField);
 		this.formAppointmentPanel.add(new JLabel("Patient : "));
-		this.formAppointmentPanel.add(this.Patient);
+		this.formAppointmentPanel.add(this.idPatientField);
 		this.formAppointmentPanel.add(this.cancelButton);
 		this.formAppointmentPanel.add(this.saveButton);
 		this.add(this.formAppointmentPanel); 
 		this.formAppointmentPanel.setVisible(true);
 		
 		//appointment Table list
-		String header [] = {"Id", "Date", "Durée", "Topic", "Id Médecin", "Id Patient", "Médecin", "Patient"};
-		this.tablePatient = new tableController(header, this.getData(""));
-		this.patientList = new JTable(this.tablePatient); 
-		this.tableScrollPanel = new JScrollPane(this.patientList); 
+		String header [] = {"Id", "Date", "Durée", "Topic", "Id Médecin", "Médecin", "Id Patient", "Patient"};
+		this.tableAppointment = new tableController(header, this.getData(""));
+		this.appointmentList = new JTable(this.tableAppointment); 
+		this.tableScrollPanel = new JScrollPane(this.appointmentList); 
 		this.tableScrollPanel.setBounds(400, 80, 600, 220);
 		this.add(this.tableScrollPanel); 
 		
@@ -77,9 +74,9 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 		this.cancelButton.addActionListener(this);
 		
 		//appointment Tablemouse listener
-		this.patientList.addMouseListener(new MouseListener() {
+		this.appointmentList.addMouseListener(new MouseListener() {
 			
-			public void moappointmenteleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -103,50 +100,43 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 				//TO DO
 				int row = 0; 
 				if (e.getClickCount()>=2) {
-					row = patientList.getSelectedRow();
-					AppointmentController appointment = new AppointmentController(Integer.parseInt(tablePatient.getValueAt(row, 0).toString()), tablePatient.getValueAt(row, 1).toString(), tablePatient.getValueAt(row, 2).toString(), tablePatient.getValueAt(row, 6).toString(), tablePatient.getValueAt(row, 4).toString(), tablePatient.getValueAt(row, 5).toString(),"",  Integer.parseInt(tablePatient.getValueAt(row, 3).toString()));
+					row = appointmentList.getSelectedRow();
+					UserController patient = UserController.Select(7);
+					UserController doctor = UserController.Select(7);
+					AppointmentController appointment = new AppointmentController(Integer.parseInt(tableAppointment.getValueAt(row, 0).toString()), tableAppointment.getValueAt(row, 1).toString(), tableAppointment.getValueAt(row, 2).toString(), tableAppointment.getValueAt(row, 3).toString(), patient,  doctor);
 					int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer cet utilisateur ?", 
 							"Suppression de l'utilisateur", JOptionPane.YES_NO_OPTION); 
 					if (reponse == 0) {
 						//suppression dans la BDD
 						appointment.Delete();
-						tablePatient.removeRow(row);
+						tableAppointment.removeRow(row);
 						//suppression dans l'affichidPatient de la table 
-						//tablePatient.supprimerLigne(row);
-						appointmentNumber.setText("Nombre de matériels disponibles :" + tablePatient.getRowCount());
+						//tableAppointment.supprimerLigne(row);
+						appointmentNumber.setText("Nombre de rendez-vous :" + tableAppointment.getRowCount());
 					}
 				}
 				else {
-					row = patientList.getSelectedRow();
-					String idappointment = tablePatient.getValueAt(row, 0).toString();
-					String dateAppointment = tablePatient.getValueAt(row, 1).toString(); 
-					String timeAppointment = tablePatient.getValueAt(row, 2).toString(); 
-					String reason = tablePatient.getValueAt(row, 5).toString();
-					String idPatient = tablePatient.getValueAt(row, 3).toString(); 
-					String status = tablePatient.getValueAt(row, 4).toString(); 
-					String role = tablePatient.getValueAt(row, 6).toString(); 
-					//remplissidPatient du formulaire 
+					row = appointmentList.getSelectedRow();
+					String dateAppointment = tableAppointment.getValueAt(row, 1).toString(); 
+					String timeAppointment = tableAppointment.getValueAt(row, 2).toString(); 
+					String reason = tableAppointment.getValueAt(row, 3).toString();
+					String idDoctor = tableAppointment.getValueAt(row, 4).toString(); 
+					String idPatient = tableAppointment.getValueAt(row, 6).toString(); 
+					//remplissiage du formulaire 
 
-					idAppointment.setText(idappointment); 
-					dateAppointment.setText(dateAppointment);
-					timeAppointment.setText(timeAppointment);
-					reason .setText(idPatient);
-					idPatient.setText(status);
-					idDoctor.setText(reason);
+					dateAppointmentField.setText(dateAppointment);
+					timeAppointmentField.setText(timeAppointment);
+					reasonField.setText(reason); 
+					idPatientField.setText(idPatient);
+					idDoctorField.setText(idDoctor);
 					saveButton.setText("Modifier");
 				}
 				
 			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
-			}
 		});
 		//Nombre de matériels dans la table :
-		int nbappointments = this.tablePatient.getRowCount(); 
-		appointmentNumber = new JLabel("Nombre de matériels disponnibles : " + nbappointments);
+		int nbappointments = this.tableAppointment.getRowCount(); 
+		appointmentNumber = new JLabel("Nombre de rendez-vous : " + nbappointments);
 		appointmentNumber.setBounds(300, 360, 300, 20);
 		this.add(appointmentNumber); 
 	}
@@ -168,11 +158,11 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 		return matrice;
 	}
 	public void clearFields() {
-		dateAppointment.setText("");
-		timeAppointment.setText("");
-		reason .setText("");
-		idPatient.setText("");
-		idDoctor.setText("");
+		dateAppointmentField.setText("");
+		timeAppointmentField.setText("");
+		reasonField.setText("");
+		idPatientField.setText("");
+		idDoctorField.setText("");
 		saveButton.setText("Enregistrer");
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -181,22 +171,22 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 		}
 		else if (e.getSource() == this.saveButton) {
 			int idappointment = 0;
-			String dateAppointment = this.dateAppointment.getText(); 
-			String timeAppointment = this.timeAppointment.getText(); 
-			String reason = this.idDoctor.getText();
-			int idPatient =  Integer.parseInt(this.reason .getText()); 
-			int idDoctor =  Integer.parseInt(this.reason .getText()); 
+			String dateAppointment = this.dateAppointmentField.getText(); 
+			String timeAppointment = this.timeAppointmentField.getText(); 
+			String reason = this.idDoctorField.getText();
+			int idPatient =  Integer.parseInt(this.reasonField.getText()); 
+			int idDoctor =  Integer.parseInt(this.reasonField.getText()); 
 			UserController doctor = UserController.Select(idDoctor);
 			UserController patient = UserController.Select(idPatient);
 			//String status = this.idPatient.getText(); 
 			AppointmentController appointment = new AppointmentController (idappointment, dateAppointment, timeAppointment, reason, doctor, patient);
 			if(this.saveButton.getText().equals("Modifier")) {
 				int row = 0; 
-				row = patientList.getSelectedRow(); 
-				idappointment = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
+				row = appointmentList.getSelectedRow(); 
+				idappointment = Integer.parseInt(tableAppointment.getValueAt(row, 0).toString());
 				appointment.Update();
 				Object updatedRow [] = {idappointment, dateAppointment, timeAppointment, reason, patient.idUser, doctor.idUser, patient.firstName + " " + patient.lastName, doctor.firstName + " " +doctor.lastName};
-				this.tablePatient.updateTable(row, updatedRow);
+				this.tableAppointment.updateTable(row, updatedRow);
 				JOptionPane.showMessageDialog(this, "Modification effectuée");
 				this.clearFields();
 				this.saveButton.setText("Enregistrer");
@@ -204,10 +194,10 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 				boolean ok = true;
 				if(idPatient < 0) {
 					JOptionPane.showMessageDialog(this, "Erreur, entrez un âge supérieur à 0");
-					this.reason .setBackground(Color.red);
+					this.reasonField.setBackground(Color.red);
 					ok = false;
 				}else {
-					this.reason .setBackground(Color.white);
+					this.reasonField.setBackground(Color.white);
 				}
 				if(ok) {
 					appointment.Add();
@@ -218,8 +208,8 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 //					JOptionPane.showMessidPatientDialog(this, "Matériel inséré avec succés dans la BDD");
 //					//insertion dans l'affichidPatient graphique 
 					Object row[]= {newappointment.idAppointment, newappointment.dateAppointment, newappointment.timeAppointment, newappointment.reason, newappointment.doctor, newappointment.patient};
-					this.tablePatient.addRow(row);
-					appointmentNumber.setText("Nombre de matériels disponibles :"+tablePatient.getRowCount());
+					this.tableAppointment.addRow(row);
+					appointmentNumber.setText("Nombre de rendez-vous :"+tableAppointment.getRowCount());
 					this.clearFields();
 				}
 			} 

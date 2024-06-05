@@ -135,7 +135,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 						tablePatient.removeRow(row);
 						//suppression dans l'affichage de la table 
 						//tablePatient.supprimerLigne(row);
-						userNumber.setText("Nombre de matériels disponibles :" + tablePatient.getRowCount());
+						userNumber.setText("Nombre de patients :" + tablePatient.getRowCount());
 					}
 				}
 				else {
@@ -163,7 +163,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 		});
 		//Nombre de matériels dans la table :
 		int nbUsers = this.tablePatient.getRowCount(); 
-		userNumber = new JLabel("Nombre de matériels disponnibles : " + nbUsers);
+		userNumber = new JLabel("Nombre de patient : " + nbUsers);
 		userNumber.setBounds(300, 360, 300, 20);
 		this.add(userNumber); 
 	}
@@ -234,7 +234,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 //					//insertion dans l'affichage graphique 
 					Object row[]= {newUser.idUser, newUser.firstName, newUser.lastName, newUser.age, newUser.mail, newUser.address, newUser.role};
 					this.tablePatient.addRow(row);
-					userNumber.setText("Nombre de matériels disponibles :"+tablePatient.getRowCount());
+					userNumber.setText("Nombre de patient :"+tablePatient.getRowCount());
 					this.clearFields();
 				}
 			} 

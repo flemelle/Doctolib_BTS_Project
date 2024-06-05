@@ -135,7 +135,7 @@ public class PanelDoctors extends PanelModel implements ActionListener{
 							tableDoctor.removeRow(row);
 							//suppression dans l'affichage de la table 
 							//tableDoctor.supprimerLigne(row);
-							userNumber.setText("Nombre de matériels disponibles :" + tableDoctor.getRowCount());
+							userNumber.setText("Nombre de médecin disponibles :" + tableDoctor.getRowCount());
 						}
 					}
 					else {
@@ -163,7 +163,7 @@ public class PanelDoctors extends PanelModel implements ActionListener{
 			});
 			//Nombre de matériels dans la table :
 			int nbUsers = this.tableDoctor.getRowCount(); 
-			userNumber = new JLabel("Nombre de matériels disponnibles : " + nbUsers);
+			userNumber = new JLabel("Nombre de médecins : " + nbUsers);
 			userNumber.setBounds(300, 360, 300, 20);
 			this.add(userNumber); 
 		}
@@ -234,7 +234,7 @@ public class PanelDoctors extends PanelModel implements ActionListener{
 	//					//insertion dans l'affichage graphique 
 						Object row[]= {newUser.idUser, newUser.firstName, newUser.lastName, newUser.age, newUser.mail, newUser.address, newUser.role};
 						this.tableDoctor.addRow(row);
-						userNumber.setText("Nombre de matériels disponibles :"+tableDoctor.getRowCount());
+						userNumber.setText("Nombre de médecin :"+tableDoctor.getRowCount());
 						this.clearFields();
 					}
 				} 
