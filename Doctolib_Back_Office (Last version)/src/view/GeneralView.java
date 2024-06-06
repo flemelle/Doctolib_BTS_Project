@@ -30,9 +30,9 @@ public class GeneralView extends JFrame implements ActionListener{
 		this.setTitle("Doctolib Back Office");
 		this.setBackground(new Color(55, 55, 55));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(100, 100, 1000, 600);
+		this.setBounds(100, 100, 1300, 800);
 		this.setLayout(null);
-		this.setResizable(true);
+		this.setResizable(false);
 		
 		//Menu panel
 		navigationPanel.setBounds(100, 20, 800, 30);
