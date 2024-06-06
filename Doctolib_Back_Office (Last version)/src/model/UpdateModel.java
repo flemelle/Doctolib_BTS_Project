@@ -14,7 +14,7 @@ public class UpdateModel {
 		SQLRequestModel.executeSQL(request);
 	}
 	public static void Update(PrescriptionController prescription) {
-		String request = "UPDATE btsProject_Prescription SET datePrescription = '"+prescription.datePrescription+"', content = '"+prescription.content+"' , idPatient = '"+prescription.patient.idUser+"', idDoctor = '"+prescription.doctor.idUser+"' WHERE idAppointment = '"+prescription.idPrescription+"';";
+		String request = "UPDATE btsProject_Prescription SET datePrescription = '"+prescription.datePrescription+"', content = '"+prescription.content+"' , idPatient = '"+prescription.patient.idUser+"', idDoctor = '"+prescription.doctor.idUser+"' WHERE idPrescription = '"+prescription.idPrescription+"';";
 		SQLRequestModel.executeSQL(request);
 	}
 }

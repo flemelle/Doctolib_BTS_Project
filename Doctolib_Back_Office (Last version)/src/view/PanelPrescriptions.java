@@ -28,7 +28,6 @@ public class PanelPrescriptions extends PanelModel implements ActionListener{
 
 	private JPanel formPrescriptionPanel = new JPanel(); 
 	private JTextField datePrescriptionField = new JTextField();
-	private JTextField timePrescriptionField = new JTextField();
 	private JTextField contentField  = new JTextField();
 	private JTextField idPatientField = new JTextField();
 	private JTextField idDoctorField = new JTextField();
@@ -154,7 +153,6 @@ public class PanelPrescriptions extends PanelModel implements ActionListener{
 	}
 	public void clearFields() {
 		datePrescriptionField.setText("");
-		timePrescriptionField.setText("");
 		contentField.setText("");
 		idPatientField.setText("");
 		idDoctorField.setText("");
@@ -167,10 +165,9 @@ public class PanelPrescriptions extends PanelModel implements ActionListener{
 		else if (e.getSource() == this.saveButton) {
 			int idPrescription = 0;
 			String datePrescription = this.datePrescriptionField.getText(); 
-			String timePrescription = this.timePrescriptionField.getText(); 
-			String content = this.idDoctorField.getText();
-			int idPatient =  Integer.parseInt(this.contentField.getText()); 
-			int idDoctor =  Integer.parseInt(this.contentField.getText()); 
+			String content = this.contentField.getText();
+			int idPatient =  Integer.parseInt(this.idPatientField.getText()); 
+			int idDoctor =  Integer.parseInt(this.idDoctorField.getText()); 
 			UserController doctor = UserController.Select(idDoctor);
 			UserController patient = UserController.Select(idPatient);
 			//String status = this.idPatient.getText(); 
@@ -178,9 +175,9 @@ public class PanelPrescriptions extends PanelModel implements ActionListener{
 			if(this.saveButton.getText().equals("Modifier")) {
 				int row = 0; 
 				row = PrescriptionList.getSelectedRow(); 
-				idPrescription = Integer.parseInt(tablePrescription.getValueAt(row, 0).toString());
+				Prescription.idPrescription = Integer.parseInt(tablePrescription.getValueAt(row, 0).toString());
 				Prescription.Update();
-				Object updatedRow [] = {idPrescription, datePrescription, timePrescription, content, patient.idUser, doctor.idUser, patient.firstName + " " + patient.lastName, doctor.firstName + " " +doctor.lastName};
+				Object updatedRow [] = {idPrescription, datePrescription, content, doctor.idUser, patient.idUser, doctor.firstName + " " + doctor.lastName, patient.firstName + " " + patient.lastName};
 				this.tablePrescription.updateTable(row, updatedRow);
 				JOptionPane.showMessageDialog(this, "Modification effectuée");
 				this.clearFields();

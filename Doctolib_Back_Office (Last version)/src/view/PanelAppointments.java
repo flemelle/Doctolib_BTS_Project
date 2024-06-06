@@ -46,7 +46,7 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 		this.formAppointmentPanel.add(this.dateAppointmentField);
 		this.formAppointmentPanel.add(new JLabel("Heure : "));
 		this.formAppointmentPanel.add(this.timeAppointmentField);
-		this.formAppointmentPanel.add(new JLabel("Topic : "));
+		this.formAppointmentPanel.add(new JLabel("Reason : "));
 		this.formAppointmentPanel.add(this.reasonField );
 		// this.formAppointmentPanel.add(new JLabel("Id Médecin : "));
 		// this.formAppointmentPanel.add(this.idDoctor);
@@ -62,7 +62,7 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 		this.formAppointmentPanel.setVisible(true);
 		
 		//appointment Table list
-		String header [] = {"Id", "Date", "Durée", "Topic", "Id Médecin", "Médecin", "Id Patient", "Patient"};
+		String header [] = {"Id", "Date", "Heure", "Reason", "Id Médecin", "Médecin", "Id Patient", "Patient"};
 		this.tableAppointment = new tableController(header, this.getData(""));
 		this.appointmentList = new JTable(this.tableAppointment); 
 		this.tableScrollPanel = new JScrollPane(this.appointmentList); 
@@ -173,9 +173,9 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 			int idappointment = 0;
 			String dateAppointment = this.dateAppointmentField.getText(); 
 			String timeAppointment = this.timeAppointmentField.getText(); 
-			String reason = this.idDoctorField.getText();
-			int idPatient =  Integer.parseInt(this.reasonField.getText()); 
-			int idDoctor =  Integer.parseInt(this.reasonField.getText()); 
+			String reason = this.reasonField.getText(); 
+			int idPatient =  Integer.parseInt(this.idPatientField.getText());
+			int idDoctor =  Integer.parseInt(this.idDoctorField.getText()); 
 			UserController doctor = UserController.Select(idDoctor);
 			UserController patient = UserController.Select(idPatient);
 			//String status = this.idPatient.getText(); 
@@ -183,7 +183,7 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 			if(this.saveButton.getText().equals("Modifier")) {
 				int row = 0; 
 				row = appointmentList.getSelectedRow(); 
-				idappointment = Integer.parseInt(tableAppointment.getValueAt(row, 0).toString());
+				appointment.idAppointment = Integer.parseInt(tableAppointment.getValueAt(row, 0).toString());
 				appointment.Update();
 				Object updatedRow [] = {idappointment, dateAppointment, timeAppointment, reason, patient.idUser, doctor.idUser, patient.firstName + " " + patient.lastName, doctor.firstName + " " +doctor.lastName};
 				this.tableAppointment.updateTable(row, updatedRow);

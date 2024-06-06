@@ -14,7 +14,7 @@ public class DeleteModel {
 		SQLRequestModel.executeSQL(request);
 	}
 	public static void Delete(PrescriptionController prescription) {
-		String request = "DELETE FROM btsProject_Appointment WHERE idPrescription = " + prescription.idPrescription + ";";
+		String request = "DELETE FROM btsProject_Prescription WHERE idPrescription = " + prescription.idPrescription + ";";
 		SQLRequestModel.executeSQL(request);
 	}
 

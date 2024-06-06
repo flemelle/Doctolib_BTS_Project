@@ -208,7 +208,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 			if(this.saveButton.getText().equals("Modifier")) {
 				int row = 0; 
 				row = patientList.getSelectedRow(); 
-				idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
+				user.idUser = Integer.parseInt(tablePatient.getValueAt(row, 0).toString());
 				user.Update();
 				Object updatedRow [] = {idUser, firstName, lastName, age, mail, address, role };
 				this.tablePatient.updateTable(row, updatedRow);
