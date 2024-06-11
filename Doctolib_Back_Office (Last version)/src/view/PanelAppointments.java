@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controller.AppointmentController;
 import controller.UserController;
@@ -34,13 +35,16 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 	private JTextField idDoctorField = new JTextField();
 	private JButton cancelButton = new JButton("Annuler"); 
 	private JButton saveButton= new JButton("Enregistrer");
+	private JLabel title = new JLabel("Rendez-vous", SwingConstants.CENTER);
 	
 	private JLabel appointmentNumber;
 	public PanelAppointments() {
-		this.setBackground(new Color(0, 100, 100));
+		//this.setBackground(new Color(0, 100, 100));
 //		
 		this.formAppointmentPanel.setBounds(50, 50, 300, 250);
-
+		this.title.setBounds(400, 30, 600, 40);
+		//this.title.setFont(new Font("Serif", Font.PLAIN, 14));
+		this.add(this.title);
 		this.formAppointmentPanel.setLayout(new GridLayout(6, 2));
 		this.formAppointmentPanel.add(new JLabel("Date : "));
 		this.formAppointmentPanel.add(this.dateAppointmentField);
@@ -60,13 +64,13 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 		this.formAppointmentPanel.add(this.saveButton);
 		this.add(this.formAppointmentPanel); 
 		this.formAppointmentPanel.setVisible(true);
-		
+		//(50, 60, 1100, 700);
 		//appointment Table list
 		String header [] = {"Id", "Date", "Heure", "Reason", "Id Médecin", "Médecin", "Id Patient", "Patient"};
 		this.tableAppointment = new tableController(header, this.getData(""));
 		this.appointmentList = new JTable(this.tableAppointment); 
 		this.tableScrollPanel = new JScrollPane(this.appointmentList); 
-		this.tableScrollPanel.setBounds(400, 80, 600, 220);
+		this.tableScrollPanel.setBounds(400, 80, 650, 550);
 		this.add(this.tableScrollPanel); 
 		
 		//Button listener
@@ -136,8 +140,8 @@ public class PanelAppointments extends PanelModel implements ActionListener{
 		});
 		//Nombre de matériels dans la table :
 		int nbappointments = this.tableAppointment.getRowCount(); 
-		appointmentNumber = new JLabel("Nombre de rendez-vous : " + nbappointments);
-		appointmentNumber.setBounds(300, 360, 300, 20);
+		appointmentNumber = new JLabel("Nombre de rendez-vous : " + nbappointments, SwingConstants.CENTER);
+		appointmentNumber.setBounds(50, 400, 950, 550);
 		this.add(appointmentNumber); 
 	}
 	public Object [][] getData (String filter){

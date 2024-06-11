@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controller.UserController;
 import controller.tableController;
@@ -35,11 +36,12 @@ public class PanelPatients extends PanelModel implements ActionListener{
 	private JTextField roleField = new JTextField();
 	private JButton cancelButton = new JButton("Annuler"); 
 	private JButton saveButton= new JButton("Enregistrer");
+	private JLabel title = new JLabel("Patients", SwingConstants.CENTER);
 	
 	private JLabel userNumber;
 	//private JComboBox<String> cathegoryList = new JComboBox<String>();
 	public PanelPatients() {
-		this.setBackground(new Color(0, 100, 100));
+		//this.setBackground(new Color(0, 100, 100));
 //		this.cathegoryList.addItem("Médecins");
 //		this.cathegoryList.addItem("Patients");
 //		this.cathegoryList.addItem("Rendez-vous");
@@ -52,7 +54,9 @@ public class PanelPatients extends PanelModel implements ActionListener{
 //		this.add(mainContainer);
 		//User Form
 		this.formUserPanel.setBounds(50, 50, 300, 250);
+		this.title.setBounds(400, 30, 600, 40);
 
+		this.add(this.title);
 		this.formUserPanel.setLayout(new GridLayout(7, 2));
 		this.formUserPanel.add(new JLabel("Nom : "));
 		this.formUserPanel.add(this.firstNameField);
@@ -76,7 +80,7 @@ public class PanelPatients extends PanelModel implements ActionListener{
 		this.tablePatient = new tableController(header, this.getData(""));
 		this.patientList = new JTable(this.tablePatient); 
 		this.tableScrollPanel = new JScrollPane(this.patientList); 
-		this.tableScrollPanel.setBounds(400, 80, 400, 220);
+		this.tableScrollPanel.setBounds(400, 80, 650, 550);
 		this.add(this.tableScrollPanel); 
 		
 		//Button listener
@@ -135,7 +139,11 @@ public class PanelPatients extends PanelModel implements ActionListener{
 						tablePatient.removeRow(row);
 						//suppression dans l'affichage de la table 
 						//tablePatient.supprimerLigne(row);
-						userNumber.setText("Nombre de patients :" + tablePatient.getRowCount());
+
+						int nbUsers = tablePatient.getRowCount(); 
+						userNumber = new JLabel("Nombre de patients : " + nbUsers, SwingConstants.CENTER);
+						userNumber.setBounds(50, 400, 950, 550);
+						//userNumber.setText("Nombre de patients :" + tablePatient.getRowCount());
 					}
 				}
 				else {
@@ -163,8 +171,8 @@ public class PanelPatients extends PanelModel implements ActionListener{
 		});
 		//Nombre de matériels dans la table :
 		int nbUsers = this.tablePatient.getRowCount(); 
-		userNumber = new JLabel("Nombre de patient : " + nbUsers);
-		userNumber.setBounds(300, 360, 300, 20);
+		userNumber = new JLabel("Nombre de patient : " + nbUsers, SwingConstants.CENTER);
+		userNumber.setBounds(50, 400, 950, 550);
 		this.add(userNumber); 
 	}
 	public Object [][] getData (String filter){

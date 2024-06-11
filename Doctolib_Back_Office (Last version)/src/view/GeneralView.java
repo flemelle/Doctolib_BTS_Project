@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import controller.Doctolib_Back_Office;
 
@@ -28,14 +29,14 @@ public class GeneralView extends JFrame implements ActionListener{
 	public GeneralView() {
 		//JFrame set up
 		this.setTitle("Doctolib Back Office");
-		this.setBackground(new Color(55, 55, 55));
+		this.setBackground(new Color(255, 255, 255));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(100, 100, 1300, 800);
+		this.setBounds(100, 100, 1200, 800);
 		this.setLayout(null);
 		this.setResizable(false);
 		
 		//Menu panel
-		navigationPanel.setBounds(100, 20, 800, 30);
+		navigationPanel.setBounds(200, 20, 800, 40);
 		navigationPanel.setLayout(new GridLayout(1,4));
 		navigationPanel.add(this.doctorsPageButton);
 		navigationPanel.add(this.patientsPageButton);

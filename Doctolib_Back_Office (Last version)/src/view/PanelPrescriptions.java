@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controller.PrescriptionController;
 import controller.UserController;
@@ -33,12 +34,15 @@ public class PanelPrescriptions extends PanelModel implements ActionListener{
 	private JTextField idDoctorField = new JTextField();
 	private JButton cancelButton = new JButton("Annuler"); 
 	private JButton saveButton= new JButton("Enregistrer");
+	private JLabel title = new JLabel("Ordonnances", SwingConstants.CENTER);
 	
 	private JLabel PrescriptionNumber;
 	public PanelPrescriptions() {
-		this.setBackground(new Color(0, 100, 100));
+		//this.setBackground(new Color(0, 100, 100));
 //		
 		this.formPrescriptionPanel.setBounds(50, 50, 300, 250);
+		this.title.setBounds(400, 30, 600, 40);
+		this.add(this.title);
 
 		this.formPrescriptionPanel.setLayout(new GridLayout(5, 2));
 		this.formPrescriptionPanel.add(new JLabel("Date : "));
@@ -63,7 +67,7 @@ public class PanelPrescriptions extends PanelModel implements ActionListener{
 		this.tablePrescription = new tableController(header, this.getData(""));
 		this.PrescriptionList = new JTable(this.tablePrescription); 
 		this.tableScrollPanel = new JScrollPane(this.PrescriptionList); 
-		this.tableScrollPanel.setBounds(400, 80, 600, 220);
+		this.tableScrollPanel.setBounds(400, 80, 650, 550);
 		this.add(this.tableScrollPanel); 
 		
 		//Button listener
@@ -131,8 +135,8 @@ public class PanelPrescriptions extends PanelModel implements ActionListener{
 		});
 		//Nombre de matériels dans la table :
 		int nbPrescriptions = this.tablePrescription.getRowCount(); 
-		PrescriptionNumber = new JLabel("Nombre de rendez-vous : " + nbPrescriptions);
-		PrescriptionNumber.setBounds(300, 360, 300, 20);
+		PrescriptionNumber = new JLabel("Nombre de rendez-vous : " + nbPrescriptions, SwingConstants.CENTER);
+		PrescriptionNumber.setBounds(50, 400, 950, 550);
 		this.add(PrescriptionNumber); 
 	}
 	public Object [][] getData (String filter){
