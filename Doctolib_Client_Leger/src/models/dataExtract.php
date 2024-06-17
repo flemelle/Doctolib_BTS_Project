@@ -29,6 +29,9 @@ class DataExtract
     function getListWhere($db, $table, $id, $idTitle, $field){
         $rqt = $db -> getConnection() -> prepare (
             "SELECT * FROM $table WHERE $idTitle" ." = ". $id . (new SelectModel())-> sortBy($field) .";");
+            // echo (
+            //     "SELECT * FROM $table WHERE $idTitle" ." = ". $id . (new SelectModel())-> sortBy($field) .";");
+            //     die;
         return (new SelectModel())-> FetchDataList($rqt);
     }
 }

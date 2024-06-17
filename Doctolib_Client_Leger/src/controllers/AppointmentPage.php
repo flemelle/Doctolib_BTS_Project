@@ -18,7 +18,7 @@ class Appointement{
         if ($_SESSION['role'] == 'admin'){
             $doctorLayout = '';
             $patientLayout = 'hidden';
-            $data = (new DataExtract()) -> getList($db, 'btsProject_Appointment', "");
+            $data = (new DataExtract()) -> getList($db, 'btsProject_Appointment_Users', "");
         
         }
         else {
@@ -31,7 +31,7 @@ class Appointement{
                 $patientLayout = 'hidden';
                 $doctorLayout = '';
             }
-            $data = (new DataExtract()) -> getListWhere($db, 'btsProject_Appointment', $_SESSION['idUser'], $idUserType, "");
+            $data = (new DataExtract()) -> getListWhere($db, 'btsProject_Appointment_Users', $_SESSION['idUser'], $idUserType, "");
             // if ($_SESSION['role'] == 'patient'){
             //     $doctor = (new DataExtract()) -> getRowWhere($db, 'btsProject_User', ['idUser', $data['idDoctor']], "");
             // } else if ($_SESSION['role'] == 'doctor'){

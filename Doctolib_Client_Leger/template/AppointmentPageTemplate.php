@@ -26,7 +26,7 @@
           ?>
       </p>
       <p>Motif : <?= $Appointment['reason']?></p>
-      <p <?= $patientLayout?>>Matricule Doctor <?= $Appointment['idDoctor']?></p>
+      <p <?= $patientLayout?>>Doctor :<?= $Appointment['doctorFirstName']." ". $Appointment['doctorLastName']?></p>
       <p <?= $doctorLayout?>>Matricule Patient :  <?= $Appointment['idPatient']?></p>
       <?php if ($_SESSION['role'] == "doctor"){?>
       <form method ="get" action = "index.php?page=appointment" class ='iconForm'>

@@ -7,8 +7,8 @@
   foreach($data as $prescription){
     ?>
     <div class ='prescription'>
-      <p>Ordonnance délivrée par le Docteur <?= $prescription["idDoctor"]?>, délivrée le <?= $prescription["datePrescription"]?> </p>
-      <p> Au nom de <?= $prescription["firstName"]?> <?= $prescription["lastName"]?></p>
+      <p>Ordonnance délivrée par le Docteur <?= $prescription["doctorLastName"]?>, délivrée le <?= $prescription["datePrescription"]?> </p>
+      <p> Au nom de <?= $prescription["patientFirstName"]?> <?= $prescription["patientLastName"]?></p>
       <p><?= $prescription["content"]?></p>
     </div>
   <?php 

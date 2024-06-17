@@ -16,7 +16,7 @@ class Prescription{
         if ($_SESSION['role'] == 'admin'){
             $doctorLayout = 'hidden';
             $patientLayout = '';
-            $data = (new DataExtract()) -> getList($db, 'btsProject_Prescription', "");
+            $data = (new DataExtract()) -> getList($db, 'btsProject_Prescription_Users', "");
         
         }else {
             if ($_SESSION['role'] == 'patient'){
@@ -28,7 +28,7 @@ class Prescription{
                 $doctorLayout ='';
                 $idUserType = 'idDoctor';
             }
-            $data = (new DataExtract()) -> getListWhere($db, 'btsProject_Prescription', $_SESSION['idUser'], $idUserType, "");
+            $data = (new DataExtract()) -> getListWhere($db, 'btsProject_Prescription_Users', $_SESSION['idUser'], $idUserType, "");
         }
         include 'template/PrescriptionPageTemplate.php';
     }
