@@ -105,7 +105,7 @@ public class PanelPrescriptions extends PanelModel implements ActionListener{
 					UserController patient = UserController.Select(7);
 					UserController doctor = UserController.Select(5);
 					PrescriptionController Prescription = new PrescriptionController(Integer.parseInt(tablePrescription.getValueAt(row, 0).toString()), tablePrescription.getValueAt(row, 1).toString(), tablePrescription.getValueAt(row, 2).toString(), patient,  doctor);
-					int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer cette ordonnace ?", 
+					int reponse = JOptionPane.showConfirmDialog(null, "Voulez-vous supprimer cette ordonnance ?", 
 							"Suppression de l'ordonnance ", JOptionPane.YES_NO_OPTION); 
 					if (reponse == 0) {
 						//suppression dans la BDD

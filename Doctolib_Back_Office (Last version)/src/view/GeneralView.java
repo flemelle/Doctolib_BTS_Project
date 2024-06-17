@@ -17,7 +17,7 @@ public class GeneralView extends JFrame implements ActionListener{
 	private JButton patientsPageButton = new JButton("Patients");
 	private JButton usersPageButton = new JButton("Utilisateurs");
 	private JButton appoitmentsPageButton = new JButton("Rendez-vous");
-	private JButton prescriptionsPageButton = new JButton("Ordonnaces");
+	private JButton prescriptionsPageButton = new JButton("Ordonnances");
 	private JButton exit = new JButton("Quitter");
 	private JPanel navigationPanel = new JPanel();
 	private static PanelDoctors panelDoctors = new PanelDoctors();
